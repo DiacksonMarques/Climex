@@ -288,6 +288,51 @@
       "data_Pesq": "13/7/2021",
       "user_id": "2",
       "id": 6
+    },
+    {
+      "coord": {
+        "lon": -39.3153,
+        "lat": -7.2131
+      },
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "algumas nuvens",
+          "icon": "02n"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 29.98,
+        "feels_like": 31.18,
+        "temp_min": 29.98,
+        "temp_max": 29.98,
+        "pressure": 1017,
+        "humidity": 51
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 4.12,
+        "deg": 170
+      },
+      "clouds": {
+        "all": 20
+      },
+      "dt": 1626208846,
+      "sys": {
+        "type": 1,
+        "id": 8384,
+        "country": "BR",
+        "sunrise": 1626166248,
+        "sunset": 1626208490
+      },
+      "timezone": -10800,
+      "name": "Juazeiro do Norte",
+      "cod": 200,
+      "data_Pesq": "13/7/2021",
+      "user_id": "1",
+      "id": 7
     }
   ]
 }
