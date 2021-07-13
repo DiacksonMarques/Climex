@@ -10,26 +10,60 @@
       "name": "Karen",
       "email": "karenkarollayne5@gmail.com",
       "id": 2,
-      "code": "20216122"
-    },
-    {
-      "name": "DACKSON",
-      "email": "DALSPN@G<AIL>CM",
-      "id": 3,
-      "code": "20216123"
-    },
-    {
-      "name": "TESTE",
-      "email": "TESTE",
-      "id": 4,
-      "code": "20216134"
+      "code": "20216132"
     }
   ],
   "weatherForecast": [
     {
       "coord": {
-        "lon": -39.4094,
-        "lat": -7.2342
+        "lon": -50.8739,
+        "lat": -29.3786
+      },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "nublado",
+          "icon": "04d"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 19.41,
+        "feels_like": 19.1,
+        "temp_min": 17.36,
+        "temp_max": 19.64,
+        "pressure": 1019,
+        "humidity": 65
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 1.42,
+        "deg": 353,
+        "gust": 1.23
+      },
+      "clouds": {
+        "all": 100
+      },
+      "dt": 1626207001,
+      "sys": {
+        "type": 2,
+        "id": 2018822,
+        "country": "BR",
+        "sunrise": 1626171411,
+        "sunset": 1626208876
+      },
+      "timezone": -10800,
+      "name": "Gramado",
+      "cod": 200,
+      "data_Pesq": "13/7/2021",
+      "user_id": "2",
+      "id": 1
+    },
+    {
+      "coord": {
+        "lon": -39.3153,
+        "lat": -7.2131
       },
       "weather": [
         {
@@ -41,37 +75,219 @@
       ],
       "base": "stations",
       "main": {
-        "temp": 30.94,
-        "feels_like": 30.07,
-        "temp_min": 30.94,
-        "temp_max": 30.94,
+        "temp": 28.99,
+        "feels_like": 28.27,
+        "temp_min": 28.99,
+        "temp_max": 28.99,
         "pressure": 1014,
-        "humidity": 34,
+        "humidity": 36,
+        "sea_level": 1014,
+        "grnd_level": 968
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 3.42,
+        "deg": 149,
+        "gust": 6.5
+      },
+      "clouds": {
+        "all": 1
+      },
+      "dt": 1626207053,
+      "sys": {
+        "country": "BR",
+        "sunrise": 1626166248,
+        "sunset": 1626208490
+      },
+      "timezone": -10800,
+      "name": "Juazeiro do Norte",
+      "cod": 200,
+      "data_Pesq": "13/7/2021",
+      "user_id": "2",
+      "id": 2
+    },
+    {
+      "coord": {
+        "lon": -39.3042,
+        "lat": -7.3111
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "céu limpo",
+          "icon": "01d"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 28.55,
+        "feels_like": 28.01,
+        "temp_min": 28.55,
+        "temp_max": 28.55,
+        "pressure": 1014,
+        "humidity": 38,
         "sea_level": 1014,
         "grnd_level": 967
       },
       "visibility": 10000,
       "wind": {
-        "speed": 4.35,
-        "deg": 145,
-        "gust": 5.14
+        "speed": 3.47,
+        "deg": 146,
+        "gust": 6.69
       },
       "clouds": {
-        "all": 3
+        "all": 0
       },
-      "dt": 1626193982,
+      "dt": 1626207095,
       "sys": {
         "country": "BR",
-        "sunrise": 1626166273,
-        "sunset": 1626208510
+        "sunrise": 1626166255,
+        "sunset": 1626208478
       },
       "timezone": -10800,
-      "name": "Crato",
+      "name": "Barbalha",
       "cod": 200,
       "data_Pesq": "13/7/2021",
       "user_id": "2",
-      "id": 1,
-      "start": 3
+      "id": 3,
+      "start": 5
+    },
+    {
+      "coord": {
+        "lon": -43.2075,
+        "lat": -22.9028
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "céu limpo",
+          "icon": "01n"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 22.8,
+        "feels_like": 22.89,
+        "temp_min": 21.62,
+        "temp_max": 25.97,
+        "pressure": 952,
+        "humidity": 67
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 5.14,
+        "deg": 180
+      },
+      "clouds": {
+        "all": 0
+      },
+      "dt": 1626207948,
+      "sys": {
+        "type": 1,
+        "id": 8429,
+        "country": "BR",
+        "sunrise": 1626168800,
+        "sunset": 1626207807
+      },
+      "timezone": -10800,
+      "name": "Rio de Janeiro",
+      "cod": 200,
+      "data_Pesq": "13/7/2021",
+      "user_id": "2",
+      "id": 4,
+      "start": 4
+    },
+    {
+      "coord": {
+        "lon": -46.6361,
+        "lat": -23.5475
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "céu limpo",
+          "icon": "01d"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 22.8,
+        "feels_like": 22.18,
+        "temp_min": 17.31,
+        "temp_max": 24.2,
+        "pressure": 1022,
+        "humidity": 40
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 1.54,
+        "deg": 290
+      },
+      "clouds": {
+        "all": 0
+      },
+      "dt": 1626207938,
+      "sys": {
+        "type": 1,
+        "id": 8394,
+        "country": "BR",
+        "sunrise": 1626169695,
+        "sunset": 1626208557
+      },
+      "timezone": -10800,
+      "name": "São Paulo",
+      "cod": 200,
+      "data_Pesq": "13/7/2021",
+      "user_id": "2",
+      "id": 5
+    },
+    {
+      "coord": {
+        "lon": -46.6361,
+        "lat": -23.5475
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "céu limpo",
+          "icon": "01d"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 22.8,
+        "feels_like": 22.18,
+        "temp_min": 17.31,
+        "temp_max": 24.2,
+        "pressure": 1022,
+        "humidity": 40
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 1.54,
+        "deg": 290
+      },
+      "clouds": {
+        "all": 0
+      },
+      "dt": 1626207938,
+      "sys": {
+        "type": 1,
+        "id": 8394,
+        "country": "BR",
+        "sunrise": 1626169695,
+        "sunset": 1626208557
+      },
+      "timezone": -10800,
+      "name": "São Paulo",
+      "cod": 200,
+      "data_Pesq": "13/7/2021",
+      "user_id": "2",
+      "id": 6
     }
   ]
 }

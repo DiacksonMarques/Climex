@@ -6,17 +6,17 @@
         </div>
         <ul class="pagination">
             <li class="page-item">
-                <a href="#" @click="paginationExe(0 ,2)" tabindex="-1">Previous</a>
+                <a  @click="paginationExe(0 ,2)" tabindex="-1">Previous</a>
             </li>
             <li class="page-item"  v-for="(pag, index) in paginators" :key="pag" :class="(pag - 1 === number_pag) || (pag > 3 && index < paginators.length - 1) ? 'active':'' ">
-                <a href @click="paginationExe(pag ,0)" v-if="index <=2">{{pag}}</a>
+                <a @click="paginationExe(pag ,0)" v-if="index <=2">{{pag}}</a>
                 
                 <a v-if="index == 3">....</a>
 
-                <a href @click="paginationExe(pag ,0)" v-if="index > 2 && index + 1 == number_pag">{{pag}}</a>
+                <a @click="paginationExe(pag ,0)" v-if="index > 2 && index + 1 == number_pag">{{pag}}</a>
             </li>
             <li class="page-item">
-                <a href="#" @click="paginationExe(0 ,1)">Next</a>
+                <a  @click="paginationExe(0 ,1)">Next</a>
             </li>
         </ul>
 
@@ -34,11 +34,11 @@
                 <a href="#" @click="paginationExe(0 ,2)" tabindex="-1">Previous</a>
             </li>
             <li class="page-item"  v-for="(pag, index) in paginators" :key="pag" :class="(pag - 1 === number_pag) || (pag > 3 && index < paginators.length - 1) ? 'active':'' ">
-                <a href @click="paginationExe(pag ,0)" v-if="index <=2">{{pag}}</a>
+                <a  @click="paginationExe(pag ,0)" v-if="index <=2">{{pag}}</a>
                 
                 <a v-if="index == 3">....</a>
 
-                <a href @click="paginationExe(pag ,0)" v-if="index > 2 && index + 1 == number_pag">{{pag}}</a>
+                <a  @click="paginationExe(pag ,0)" v-if="index > 2 && index + 1 == number_pag">{{pag}}</a>
             </li>
             <li class="page-item">
                 <a href="#" @click="paginationExe(0 ,1)">Next</a>
@@ -127,14 +127,16 @@ export default {
 
         function paginations(weatherForecastt){
             let cont = 0;
+            let contV = 0;
             let contPaginator = 0;
             let weatherForecastMap = [];
 
             weatherForecastt.map(weatherForecast => {
                 cont += 1;
+                contV += 1;
                 contPaginator;
 
-                if(cont == 2){
+                if(cont == 2 && contV < weatherForecastt.length ){
                     cont = 0;
                     contPaginator += 1;
                     weatherForecastMap.push(weatherForecast)
@@ -143,6 +145,12 @@ export default {
                     weatherForecastMap = [];
                 }else{
                     weatherForecastMap.push(weatherForecast)
+                }
+
+                if(weatherForecastt.length == contV){
+                    contPaginator += 1;
+                    data.weathersForecasts.push(weatherForecastMap);
+                    data.paginators.push(contPaginator)
                 }
 
                 if(weatherForecastt.length == 1){
@@ -169,6 +177,10 @@ export default {
     margin: 0 auto;
     width: 70%;
     text-align: center;
+}
+
+.page-item{
+    cursor: pointer;
 }
 
 </style>

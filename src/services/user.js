@@ -19,4 +19,16 @@ export default {
             return apiLocal.put(`/users/${codeFormPatch.id}`, codeFormPatch);
         }
     },
+
+    userId(id){
+        return apiLocal.get(`/users/${id}`);
+    },
+
+    pacthUser(user = {}){
+        return apiLocal.put(`/users/${user.id}`, user);
+    },
+
+    recuCode(name){
+        return apiLocal.get(`users?name=${name}`);
+    }
 }

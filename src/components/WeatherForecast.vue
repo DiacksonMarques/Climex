@@ -3,7 +3,7 @@
         <div class="input-container">
             <input id="codigo" type="text" pattern=".+" v-model="cite" @keyup.enter="submitweatherForecast()" required />
             <label  for="codigo">Nome da cidade</label>
-            <button class="btn btn-primary" :class="{loading}" @click="submitweatherForecast()">Submit</button>
+            <button class="btn btn-primary" :class="{loading}" @click="submitweatherForecast()">Pesquisar</button>
         </div>
 
         <div v-if="message.type != null && message.message != null" class="toast" :class="`${message.type}`">
@@ -69,6 +69,16 @@ export default {
                     }
                     data.loading = false;
                     data.pesquiseWeatherForecast = false;
+                }
+            }else{
+                let cite = data.cite;
+
+                if(cite == null || cite == ''){
+                    data.message = {
+                        message: 'Campo vazio, preencha para avançar!',
+                        type: 'toast-warning'
+                    }
+                    data.loading = false;
                 }
             }
         }
@@ -206,7 +216,6 @@ input:focus + label {
   left: 0.5rem;
   pointer-events: none;
 }
-
 
 @media (max-width: 650px){
     .content{

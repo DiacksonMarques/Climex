@@ -8,15 +8,15 @@
                             <ul class="nav nav-center">
                                 <li class="nav-item">
                                     <fas icon="cloud-sun"/>
-                                    <button class="btn btn-link">Pesquisar Clima</button>
+                                    <button @click="onLisnten(0)" class="btn btn-link">Pesquisar Clima</button>
                                 </li>
                                 <li class="nav-item">
                                     <fas icon="clipboard-list"/>
-                                    <button class="btn btn-link">Ver Pesquisas</button>
+                                    <button @click="onLisnten(1)" class="btn btn-link">Ver Pesquisas</button>
                                 </li>
                                 <li class="nav-item">
                                     <fas icon="user"/>
-                                    <button class="btn btn-link">Perfil</button>
+                                    <button @click="onLisnten(2)" class="btn btn-link">Perfil</button>
                                 </li>
                                 <li class="nav-item">
                                     <button @click="logout()" class="btn btn-primary"><fas icon="door-open"/> Sair</button>
@@ -28,14 +28,14 @@
                 </div>
                 <header class="navbar">
                     <section class="navbar-section">
-                        <a @click="onLisnten(false)" class="btn btn-link"><fas icon="cloud-sun"/> Pesquisar Clima</a>
-                        <a @click="onLisnten(true)" class="btn btn-link"><fas icon="clipboard-list"/> Ver Pesquisas</a>
+                        <a @click="onLisnten(0)" class="btn btn-link"><fas icon="cloud-sun"/> Pesquisar Clima</a>
+                        <a @click="onLisnten(1)" class="btn btn-link"><fas icon="clipboard-list"/> Ver Pesquisas</a>
                     </section>
                     <section class="navbar-center img-menu">
                         <img class="img-responsive img-logo" src="@/assets/logo.png" alt="Logo da Climex" />
                     </section>
                     <section class="navbar-section">
-                        <a class="btn btn-link"><fas icon="user"/> Perfil</a>
+                        <a @click="onLisnten(2)" class="btn btn-link"><fas icon="user"/> Perfil</a>
                         <a @click="logout()" class="btn btn-primary"><fas icon="door-open"/> Sair</a>
                     </section>
                 </header>
@@ -47,8 +47,9 @@
                             <img class="img-responsive img-logo" src="@/assets/logo.png" alt="Logo da Climex" />
                         </div>
                 </section>
-                <weather-forecast v-if="listen === false" />
-                <weather-forecast-research v-if="listen === true" />
+                <weather-forecast v-if="listen === 0" />
+                <weather-forecast-research v-if="listen === 1" />
+                <perfil v-if="listen === 2" />
             </div>
          </div>
     </main>
@@ -60,15 +61,18 @@ import router from '../router';
 
 import WeatherForecast from '../components/WeatherForecast';
 import WeatherForecastResearch from '../components/WeatherForecastResearch';
+import Perfil from '../components/Perfil';
 
 export default {
   components: { 
       WeatherForecast ,
-      WeatherForecastResearch
+      WeatherForecastResearch,
+      Perfil,
     },
   setup(){
       const data = reactive({
-        listen: false,
+        listen: 0,
+
       });
 
       function onLisnten(value){

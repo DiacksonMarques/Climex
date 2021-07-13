@@ -8,36 +8,54 @@
                         {{message.message}}
                     </div>
                     <div class="card-header">
+                        <div style="display: flex; justify-content: center; align-items: center;">
+                            <img src="../assets/logo.png" alt="Climex">
+                        </div>
                         <div class="card-title h3">Bem vindo ao Climex</div>
                         <div class="card-subtitle">Para ter acesso digite o código gerado caso ainda não tenha o código pode criar um novo</div>
+                        <a @click="checkCode(2)" v-if="checkedCode != 2" class="btn btn-link"> Esqueceu o código? </a>
                     </div>
-                    <div class="card-body" v-if="checkedCode == true">
+                    <div class="card-body" v-if="checkedCode == 1">
                         <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
                             <div class="input-container">
                                 <input id="name" type="text" pattern=".+" required v-model="codeForm.name" />
                                 <label  for="name">Nome</label>
                             </div>
                             <div class="input-container" style="margin-top: 1rem;">
-                                <input id="email" type="text" pattern=".+" required v-model="codeForm.email" />
+                                <input id="email" type="email" pattern=".+" required v-model="codeForm.email" />
                                 <label  for="email">Email</label>
                             </div>
                         </div>
                         <div style="display: flex; justify-content: space-between;">
-                            <button class="btn btn-link" @click="checkCode(true)">Voltar</button>
+                            <button class="btn btn-link" @click="checkCode(0)">Voltar</button>
 
-                            <button class="btn btn-primary" @click="submitForm()">Criar</button>
+                            <button class="btn btn-primary" :class="loading" @click="submitForm()">Criar</button>
                         </div>
                     </div>
-                    <div class="card-body" v-else>
+
+                    <div class="card-body" v-if="checkedCode == 2">
                         <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
                             <div class="input-container">
-                                <input id="codigo" type="text" pattern=".+" v-model="code" required />
+                                <input id="codigo" type="text" pattern=".+" @keyup.enter="submitRecu()" v-model="nameRec" required />
+                                <label  for="codigo">Name</label>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <button class="btn btn-link" @click="checkCode(0)">Voltar</button>
+                            <button class="btn btn-primary" @click="submitRecu()" :class="loading">Buscar</button>
+                        </div>
+                    </div>
+
+                    <div class="card-body" v-if="checkedCode == 0">
+                        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                            <div class="input-container">
+                                <input id="codigo" type="text" maxlength="8" pattern=".+" @keyup.enter="submitCode()" v-model="code" required />
                                 <label  for="codigo">Código</label>
                             </div>
                         </div>
                         <div style="display: flex; justify-content: space-between;">
-                            <button class="btn btn-link" @click="checkCode(false)">Criar código</button>
-                            <button class="btn btn-primary" @click="submitCode()">Entrar</button>
+                            <button class="btn btn-link" @click="checkCode(1)">Criar código</button>
+                            <button class="btn btn-primary" @click="submitCode()" :class="loading">Entrar</button>
                         </div>
                     </div>
                 </div>
@@ -56,21 +74,19 @@ export default {
     name: "Home",
     setup(){
         const data = reactive({
-            checkedCode: false,
+            checkedCode: 0,
             code: null,
             codeForm: {
                 name: null,
                 email: null
             },
-            message: {type: null, message: null}
+            nameRec: null,
+            message: {type: null, message: null},
+            loading: false,
         });
 
         function checkCode(code){
-            if(code === true){
-                data.checkedCode = false;
-            }else{
-                data.checkedCode = true;
-            }
+            data.checkedCode = code;
         }
 
         function closeMessage(){
@@ -79,23 +95,43 @@ export default {
         }
 
         async function submitCode(){
-            if(data.code != null && data.code != ''){
+            data.loading = true;
+            if(data.code != null && data.code.length >= 6){
                 try {
                     const response = await apiUser.userCode(data.code);
                     if(response.data[0] == null){
                         data.message.message = 'Não foi encontrado nenhum usuário com esse código';
                         data.message.type = 'toast-warning';
+                        data.loading = false;
                     }else{
+                        data.loading = false;
                         localStorage.setItem('user', response.data[0].id);
                         router.push("dashboard")
                     }
                 } catch (error) {
+                    data.loading = false;
                     console.log(error)
+                }
+            }else{
+                let code = data.code;
+
+                if(code == null){
+                    data.message = {
+                        message: 'Campo vazio, preencha para avançar!',
+                        type: 'toast-warning'
+                    }
+                }
+                if(code != null && code.length <= 6){
+                    data.message = {
+                        message: 'Número de caracteres abaixo do permitido!',
+                        type: 'toast-warning'
+                    }
                 }
             }
         }
 
         async function submitForm(){
+            data.loading = true;
             if((data.codeForm.name != null && data.codeForm.name != '') && data.codeForm.email != null && data.codeForm.email != ''){
                 try {
                     const response = await apiUser.createUser(data.codeForm);
@@ -105,7 +141,8 @@ export default {
                             type: 'toast-success'
                         } 
                         
-                        data.checkedCode = false;
+                        data.checkedCode = 0;
+                        data.loading = false;
                         data.codeForm = {
                             name: null,
                             email: null
@@ -117,6 +154,50 @@ export default {
                         message: 'Erro ao fazer cadastro. Tente novamente mais tarde!',
                         type: 'toast-warning'
                     } 
+                    data.loading = false;
+                }
+            }else{
+                let codeForm = data.codeForm;
+
+                if(codeForm.name == null || codeForm.email == null){
+                    data.message = {
+                        message: 'Campo vazio, preencha para avançar!',
+                        type: 'toast-warning'
+                    }
+                }
+            }
+        }
+
+        async function submitRecu(){
+            if(data.nameRec != null && data.nameRec != ''){
+                try {
+                    const response = await apiUser.recuCode(data.nameRec);
+                    if(response.data[0] != null){
+                        data.message= {
+                            message: `O seu código é: ${response.data[0].code}`,
+                            type: 'toast-success'
+                        } 
+                    }else{
+                        data.message= {
+                            message: `Nome errado por favor digite o nome correto.`,
+                            type: 'toast-warning'
+                        } 
+                    }
+                } catch (error) {
+                    data.message= {
+                        message: `Nome errado por favor digite o nome correto.`,
+                        type: 'toast-error'
+                    }
+                    console.log(error)
+                }
+            }else{
+                let nameRec = data.nameRec;
+
+                if(nameRec == null){
+                    data.message = {
+                        message: 'Campo vazio, preencha para avançar!',
+                        type: 'toast-warning'
+                    }
                 }
             }
         }
@@ -126,7 +207,8 @@ export default {
             checkCode,
             closeMessage,
             submitCode,
-            submitForm
+            submitForm,
+            submitRecu,
         }
     }
 }
@@ -156,6 +238,13 @@ main{
   position: relative;
   width: 98%;
   margin: 0.5rem 0;
+}
+
+.input-error {
+  border-bottom: 2px solid red !important;
+}
+.label-error{
+    color: red !important;
 }
 
 input {
