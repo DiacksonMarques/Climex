@@ -4,15 +4,41 @@
             <button class="btn btn-clear float-right" @click="closeMessage()"></button>
             {{message.message}}
         </div>
-        <div v-if="pesquiseWeatherForecast === true">
-            <weather-forecast-frame v-for="weatherForecast in weathersForecasts[number_pag]" :key="weatherForecast.id"  :weatherForecast="weatherForecast"/>
-        </div>
         <ul class="pagination">
             <li class="page-item">
                 <a href="#" @click="paginationExe(0 ,2)" tabindex="-1">Previous</a>
             </li>
-            <li class="page-item"  v-for="pag in paginators" :key="pag" :class="pag - 1 === number_pag? 'active':''">
-                <a href="#" @click="paginationExe(pag ,0)">{{pag}}</a>
+            <li class="page-item"  v-for="(pag, index) in paginators" :key="pag" :class="(pag - 1 === number_pag) || (pag > 3 && index < paginators.length - 1) ? 'active':'' ">
+                <a href @click="paginationExe(pag ,0)" v-if="index <=2">{{pag}}</a>
+                
+                <a v-if="index == 3">....</a>
+
+                <a href @click="paginationExe(pag ,0)" v-if="index > 2 && index + 1 == number_pag">{{pag}}</a>
+            </li>
+            <li class="page-item">
+                <a href="#" @click="paginationExe(0 ,1)">Next</a>
+            </li>
+        </ul>
+
+        <div v-if="pesquiseWeatherForecast === true">
+            <weather-forecast-frame v-for="weatherForecast in weathersForecasts[number_pag]" :key="weatherForecast.id"  :weatherForecast="weatherForecast"/>
+        </div>
+        <div v-if="weathersForecasts[0] == null">
+            <div class="toast toast-primary">
+                Não há dados
+            </div>
+        </div>
+        
+        <ul class="pagination">
+            <li class="page-item">
+                <a href="#" @click="paginationExe(0 ,2)" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"  v-for="(pag, index) in paginators" :key="pag" :class="(pag - 1 === number_pag) || (pag > 3 && index < paginators.length - 1) ? 'active':'' ">
+                <a href @click="paginationExe(pag ,0)" v-if="index <=2">{{pag}}</a>
+                
+                <a v-if="index == 3">....</a>
+
+                <a href @click="paginationExe(pag ,0)" v-if="index > 2 && index + 1 == number_pag">{{pag}}</a>
             </li>
             <li class="page-item">
                 <a href="#" @click="paginationExe(0 ,1)">Next</a>
@@ -109,14 +135,19 @@ export default {
                 contPaginator;
 
                 if(cont == 2){
-                    weatherForecastMap = [];
                     cont = 0;
                     contPaginator += 1;
+                    weatherForecastMap.push(weatherForecast)
                     data.weathersForecasts.push(weatherForecastMap)
                     data.paginators.push(contPaginator)
-                    weatherForecastMap.push(weatherForecast)
+                    weatherForecastMap = [];
                 }else{
                     weatherForecastMap.push(weatherForecast)
+                }
+
+                if(weatherForecastt.length == 1){
+                    data.weathersForecasts.push(weatherForecastMap);
+                    data.paginators.push(1)
                 }
             });
         }

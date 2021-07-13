@@ -1,12 +1,14 @@
 <template>
     <div class="card">
         <div class="card-header">
-            <div class="card-title h4">{{weatherForecast.name}}</div>
+            <div class="card-title h4">{{weatherForecast.name}} - {{weatherForecast.data_Pesq}}</div>
         </div>
         <div class="divider text-center" data-content="DADOS DO CLIMA"></div>
         <div class="card-body">
             <div class="content-clima">
-                <img :src="'http://openweathermap.org/img/wn/'+weatherForecast.weather[0].icon+'@2x.png'" class="img-responsive">
+                <div>
+                    <img :src="'http://openweathermap.org/img/wn/'+weatherForecast.weather[0].icon+'@2x.png'" alt="Clima" class="img-responsive-frame">
+                </div>
                 <div class="content-clima-title">
                     <div class="h1">{{weatherForecast.main.temp}}°</div>
                     <div class="h5">{{weatherForecast.weather[0].main}}</div>
@@ -144,5 +146,42 @@ export default {
 }
 .fas-check{
     color: yellow;
+}
+
+@media (max-width: 900px){
+    .content-clima{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .more-information{
+        font-size: 1rem;
+    }
+
+    .img-responsive-frame{
+        width: 20%;
+    }
+}
+
+@media (max-width: 650px){
+
+    .more-information{
+        font-size: 0.8rem;
+    }
+
+    .img-responsive-frame{
+        width: 25%;
+    }
+}
+
+@media (max-width: 425px){
+
+    .more-information{
+        font-size: 0.6rem;
+    }
+
+    .img-responsive-frame{
+        width: 30%;
+    }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <div class="input-container">
-            <input id="codigo" type="text" pattern=".+" v-model="cite" required />
+            <input id="codigo" type="text" pattern=".+" v-model="cite" @keyup.enter="submitweatherForecast()" required />
             <label  for="codigo">Nome da cidade</label>
             <button class="btn btn-primary" :class="{loading}" @click="submitweatherForecast()">Submit</button>
         </div>
@@ -10,10 +10,14 @@
             <button class="btn btn-clear float-right" @click="closeMessage()"></button>
             {{message.message}}
         </div>
-        <div class="toast toast-primary" v-if="pesquiseWeatherForecast === false">
+        
+        <div class="toast toast-primary" v-if="pesquiseWeatherForecast === false && message.type == null && message.message == null">
             Para pesquisar basta digitar o nome da cidade!
         </div>
         <weather-forecast-frame v-if="pesquiseWeatherForecast === true" :weatherForecast="weatherForecast"/>
+        <div class="week" v-if="pesquiseWeatherForecast === true">
+            <weather-forecast-week  v-for="week in weatherForecastweek" @click="weatherForecastEscolhe(week)" :key="week" :weatherForecast="week"/>
+        </div>
     </div>
 </template>
 
@@ -21,25 +25,30 @@
 import { reactive, toRefs } from '@vue/reactivity';
 import openweathermap from '../services/openweathermap';
 import WeatherForecastFrame from '../components/WeatherForecastFrame';
+import WeatherForecastWeek from '../components/WeatherForecastWeek';
 
 export default {
     components:{
-        WeatherForecastFrame
+        WeatherForecastFrame,
+        WeatherForecastWeek
     }, 
     setup(){
         const data = reactive({
             cite: null,
             pesquiseWeatherForecast: false,
             weatherForecast: {},
+            weatherForecastweek: [],
             loading: false,
             message: {type: null, message: null}
         });
 
         async function submitweatherForecast(){
+            data.weatherForecastweek = [];
             data.pesquiseWeatherForecast = false;
             closeMessage();
             data.loading = true;
             if(data.cite != null && data.cite != ''){
+                this.submitWeatherForecastWeeks();
                 try {
                     const response = await openweathermap.getWeather(data.cite);
                     if(response.data != null){
@@ -64,6 +73,52 @@ export default {
             }
         }
 
+        async function submitWeatherForecastWeeks(){
+            data.weatherForecastweek = [];
+            try {
+                const response = await openweathermap.getForecast(data.cite);
+                if(response.data != null){
+                    let weeks = response.data;
+                    let date = new Date;
+                    let hour = date.getHours();
+                    let day = date.getDate();
+                    let month = date.getMonth() + 1;
+                    let year = date.getFullYear();
+                    let dateAtual;
+
+                    if(month < 10){
+                        month = `0${month}`;
+                    }
+
+                    if(day < 10){
+                        day = `0${day}`;
+                    }
+
+                    if(hour < 19){
+                        dateAtual = `${year}-${month}-${day} 21:00:00`;
+                    }else{
+                        dateAtual = `${year}-${month + 1}-${day} 12:00:00`;
+                    }
+
+                    weeks.list.map((responseWeek) => {
+                        if(responseWeek.dt_txt == dateAtual){
+                            responseWeek['name'] = weeks.city.name;
+                            responseWeek['date_form'] = `${day}/${month}/${year}`;
+                            data.weatherForecastweek.push(responseWeek);
+
+                            dateAtual = `${year}-${month}-${day += 1} 12:00:00`;
+                        }
+                    });
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        function weatherForecastEscolhe(weatherForecastWeek){
+            data.weatherForecast = weatherForecastWeek;
+        }
+
         function closeMessage(){
             data.message = {
                 message: null,
@@ -75,6 +130,8 @@ export default {
             ...toRefs(data),
             submitweatherForecast,
             closeMessage,
+            submitWeatherForecastWeeks,
+            weatherForecastEscolhe,
         }
     }
 }
@@ -87,6 +144,16 @@ export default {
     text-align: center;
 }
 
+.week{
+    display: flex;
+    flex-direction: row;
+}
+
+.active{
+    background: rgb(255, 255, 255);
+    color: #000;
+    cursor: pointer;
+}
 
 /* Estrutura */
 .input-container {
@@ -138,5 +205,17 @@ input:focus + label {
   top: -15px;
   left: 0.5rem;
   pointer-events: none;
+}
+
+
+@media (max-width: 650px){
+    .content{
+        width: 100%;
+    }
+}
+@media (max-width: 960px){
+    .week{
+        display: none !important;
+    }
 }
 </style>

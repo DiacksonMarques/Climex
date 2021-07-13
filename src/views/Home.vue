@@ -86,6 +86,7 @@ export default {
                         data.message.message = 'Não foi encontrado nenhum usuário com esse código';
                         data.message.type = 'toast-warning';
                     }else{
+                        localStorage.setItem('user', response.data[0].id);
                         router.push("dashboard")
                     }
                 } catch (error) {
@@ -99,11 +100,23 @@ export default {
                 try {
                     const response = await apiUser.createUser(data.codeForm);
                     if(response.data != null){
-                        data.message.message = `Acesso criado com sucesso o seu código é: ${response.data.code}`;
-                        data.message.type = 'toast-success'; 
+                        data.message= {
+                            message: `Acesso criado com sucesso o seu código é: ${response.data.code}`,
+                            type: 'toast-success'
+                        } 
+                        
+                        data.checkedCode = false;
+                        data.codeForm = {
+                            name: null,
+                            email: null
+                        }
                     }
                 } catch (error) {
                     console.log(error)
+                    data.message= {
+                        message: 'Erro ao fazer cadastro. Tente novamente mais tarde!',
+                        type: 'toast-warning'
+                    } 
                 }
             }
         }
