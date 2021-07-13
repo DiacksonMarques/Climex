@@ -1,0 +1,335 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Diackson Marques",
+      "email": "diackson@gmail.com",
+      "code": "20216121"
+    },
+    {
+      "name": "Karen",
+      "email": "karenkarollayne5@gmail.com",
+      "id": 2,
+      "code": "20216122"
+    },
+    {
+      "name": "DACKSON",
+      "email": "DALSPN@G<AIL>CM",
+      "id": 3,
+      "code": "20216123"
+    }
+  ],
+  "weatherForecast": [
+    {
+      "coord": {
+        "lon": -39.4094,
+        "lat": -7.2342
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "nuvens dispersas",
+          "icon": "03n"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 25.84,
+        "feels_like": 25.97,
+        "temp_min": 25.84,
+        "temp_max": 25.84,
+        "pressure": 1019,
+        "humidity": 57
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 2.06,
+        "deg": 190
+      },
+      "clouds": {
+        "all": 40
+      },
+      "dt": 1626134061,
+      "sys": {
+        "type": 1,
+        "id": 8384,
+        "country": "BR",
+        "sunrise": 1626079871,
+        "sunset": 1626122098
+      },
+      "timezone": -10800,
+      "name": "Crato",
+      "cod": 200,
+      "id": 1,
+      "start": 5
+    },
+    {
+      "coord": {
+        "lon": -0.1257,
+        "lat": 51.5085
+      },
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "algumas nuvens",
+          "icon": "02n"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 15.86,
+        "feels_like": 16.01,
+        "temp_min": 14.29,
+        "temp_max": 17.21,
+        "pressure": 1012,
+        "humidity": 96
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 2.57,
+        "deg": 300
+      },
+      "clouds": {
+        "all": 20
+      },
+      "dt": 1626134044,
+      "sys": {
+        "type": 2,
+        "id": 2006068,
+        "country": "GB",
+        "sunrise": 1626148714,
+        "sunset": 1626207212
+      },
+      "timezone": 3600,
+      "name": "London",
+      "cod": 200,
+      "id": 2,
+      "start": 3
+    },
+    {
+      "coord": {
+        "lon": -39.3153,
+        "lat": -7.2131
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "nuvens dispersas",
+          "icon": "03n"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 25.98,
+        "feels_like": 25.98,
+        "temp_min": 25.98,
+        "temp_max": 25.98,
+        "pressure": 1019,
+        "humidity": 57
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 2.06,
+        "deg": 190
+      },
+      "clouds": {
+        "all": 40
+      },
+      "dt": 1626134337,
+      "sys": {
+        "type": 1,
+        "id": 8384,
+        "country": "BR",
+        "sunrise": 1626079846,
+        "sunset": 1626122078
+      },
+      "timezone": -10800,
+      "name": "Juazeiro do Norte",
+      "cod": 200,
+      "id": 3,
+      "start": 2
+    },
+    {
+      "coord": {
+        "lon": -0.1257,
+        "lat": 51.5085
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "nuvens dispersas",
+          "icon": "03n"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 15.77,
+        "feels_like": 15.91,
+        "temp_min": 14.2,
+        "temp_max": 17.05,
+        "pressure": 1012,
+        "humidity": 96
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 2.06,
+        "deg": 290
+      },
+      "clouds": {
+        "all": 40
+      },
+      "dt": 1626136283,
+      "sys": {
+        "type": 2,
+        "id": 2006068,
+        "country": "GB",
+        "sunrise": 1626148714,
+        "sunset": 1626207212
+      },
+      "timezone": 3600,
+      "name": "London",
+      "cod": 200,
+      "id": 4,
+      "start": 3
+    },
+    {
+      "coord": {
+        "lon": -39.4094,
+        "lat": -7.2342
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "nuvens dispersas",
+          "icon": "03n"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 24.84,
+        "feels_like": 24.97,
+        "temp_min": 24.84,
+        "temp_max": 24.84,
+        "pressure": 1020,
+        "humidity": 61
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 3.09,
+        "deg": 170
+      },
+      "clouds": {
+        "all": 40
+      },
+      "dt": 1626136674,
+      "sys": {
+        "type": 1,
+        "id": 8384,
+        "country": "BR",
+        "sunrise": 1626079871,
+        "sunset": 1626122098
+      },
+      "timezone": -10800,
+      "name": "Crato",
+      "cod": 200,
+      "id": 5,
+      "start": 5
+    },
+    {
+      "coord": {
+        "lon": -39.7369,
+        "lat": -7.1883
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "céu limpo",
+          "icon": "01n"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 24.32,
+        "feels_like": 24.77,
+        "temp_min": 24.32,
+        "temp_max": 24.32,
+        "pressure": 1019,
+        "humidity": 75,
+        "sea_level": 1019,
+        "grnd_level": 960
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 3.98,
+        "deg": 156,
+        "gust": 11.74
+      },
+      "clouds": {
+        "all": 1
+      },
+      "dt": 1626137003,
+      "sys": {
+        "type": 1,
+        "id": 8384,
+        "country": "BR",
+        "sunrise": 1626079945,
+        "sunset": 1626122181
+      },
+      "timezone": -10800,
+      "name": "Santana do Cariri",
+      "cod": 200,
+      "id": 6,
+      "start": 3
+    },
+    {
+      "coord": {
+        "lon": -39.4094,
+        "lat": -7.2342
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "nuvens dispersas",
+          "icon": "03n"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 24.84,
+        "feels_like": 24.97,
+        "temp_min": 24.84,
+        "temp_max": 24.84,
+        "pressure": 1020,
+        "humidity": 61
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 3.09,
+        "deg": 170
+      },
+      "clouds": {
+        "all": 40
+      },
+      "dt": 1626136674,
+      "sys": {
+        "type": 1,
+        "id": 8384,
+        "country": "BR",
+        "sunrise": 1626079871,
+        "sunset": 1626122098
+      },
+      "timezone": -10800,
+      "name": "Crato",
+      "cod": 200,
+      "id": 7,
+      "start": 2
+    }
+  ]
+}
